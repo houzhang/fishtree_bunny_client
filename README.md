@@ -1,6 +1,6 @@
 # FishtreeBunnyClient
 
-TODO: Write a gem description
+It's a wrapper on bunny gem.
 
 ## Installation
 
@@ -18,9 +18,15 @@ Or install it yourself as:
 
     $ gem install fishtree_bunny_client
 
+## Config
+Create rabbitmq.yml in config folder
+
 ## Usage
 
-TODO: Write usage instructions here
+Publish a mesage
+
+    FishtreeBunnyClient::Publish.direct('user.updated', {user_ids: user_ids.uniq})
+
 
 ## Contributing
 
