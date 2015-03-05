@@ -1,0 +1,21 @@
+PATH
+  remote: .
+  specs:
+    fishtree_bunny_client (0.0.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    amq-protocol (1.9.2)
+    bunny (1.7.0)
+      amq-protocol (>= 1.9.2)
+    rake (10.4.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.7)
+  bunny
+  fishtree_bunny_client!
+  rake (~> 10.0)
