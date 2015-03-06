@@ -48,9 +48,5 @@ module FishtreeBunnyClient
 	    conn.close
 	  end
 
-
-	  def self.rabbit
-	    p File.expand_path('config/rabbitmq.yml')
-	  end
 	end
 end
