@@ -46,9 +46,9 @@ class QueueListener
 			  	params = JSON.parse(body)
 
 			  	p "Processing #{queue.name} for params [#{params}]"	
-					
+					p "../queue/#{@queue_config[queue.name.gsub("_#{@env}", '')].underscore}"
 					require_relative "../queue/#{@queue_config[queue.name.gsub("_#{@env}", '')].underscore}"
-					queue_class = YAML.load "--- !ruby/object:#{@queue_config[queue.name.gsub("_#{@env}", '')]} {}"
+					p queue_class = YAML.load "--- !ruby/object:#{@queue_config[queue.name.gsub("_#{@env}", '')]} {}"
 					queue_class.process(params)
 			  rescue => e
 			  	puts e
