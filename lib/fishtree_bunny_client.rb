@@ -1,2 +1,2 @@
 require "fishtree_bunny_client/version"
-require "publish/queue_publisher"
+require "fishtree_bunny_client/queue_publisher"
