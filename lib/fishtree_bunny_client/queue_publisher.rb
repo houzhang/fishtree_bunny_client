@@ -1,9 +1,6 @@
 require "bunny"
 require "yaml"
 
-Rabbit = YAML.load(File.read(File.expand_path('config/rabbitmq.yml')))
-Rabbit.merge! Rabbit.fetch(ENV['RACK_ENV'], {}).each_with_object({}){|(k,v), h| h[k.to_sym] = v}
-
 module FishtreeBunnyClient
   class QueuePublisher
 	  def self.publish(queue, message)
@@ -39,6 +36,7 @@ module FishtreeBunnyClient
 	      ch = conn.create_channel
 	      q  = ch.queue("#{queue}_#{ENV['RACK_ENV']}")
 	      x  = ch.default_exchange
+	      p "Publishing message [#{message}] to [#{q.name}]"
 	      x.publish(message.to_json, routing_key: q.name)
 	    rescue => e
 	      puts e
