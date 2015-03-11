@@ -22,10 +22,13 @@ Or install it yourself as:
 Create rabbitmq.yml in config folder
 
 ## Usage
+```ruby
+require 'fishtree_bunny_client'
+```
 
 Publish a message to queue:
 
-    FishtreeBunnyClient::Publish.direct('add_message', {message: 'new message'})
+    FishtreeBunnyClient::QueuePublisher.direct('add_message', {message: 'new message'})
 
 Listen messages from queue:
 
@@ -42,6 +45,16 @@ queue1:
 queue2:
 	name: 'group_event.like_unliked'
 	class: 'GroupEventLikeUnlikedQueue'
+```
+3. Create `queue` folder at root of project
+4. Create queue class in `queue` folder
+```ruby
+class GroupEventCreateQueue
+	def process(params)
+		p "#{self.class} is processing params [#{params}]"	
+		GroupEvent.create_group_event(params['user_id'])
+	end
+end
 ```
 
 
