@@ -7,7 +7,7 @@ It's a wrapper on bunny gem.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'fishtree_bunny_client'
+gem 'fishtree_bunny_client', '0.0.2', git: 'git@github.com:fishtree/fishtree_bunny_client.git'
 ```
 
 And then execute:
@@ -23,9 +23,28 @@ Create rabbitmq.yml in config folder
 
 ## Usage
 
-Publish a mesage
+Publish a message to queue:
 
-    FishtreeBunnyClient::Publish.direct('user.updated', {user_ids: user_ids.uniq})
+    FishtreeBunnyClient::Publish.direct('add_message', {message: 'new message'})
+
+Listen messages from queue:
+
+1. Start listener
+```ruby
+FishtreeBunnyClient::QueueListener.new(ENV['RACK_ENV']).run
+```
+
+2. Add listener config `fishtree_queue_listener.yml` in config folder
+```ruby
+queue1:
+	name: 'group_event.create' # name of queue
+	class: 'GroupEventCreateQueue' # name of class that handle business logic for queue
+queue2:
+	name: 'group_event.like_unliked'
+	class: 'GroupEventLikeUnlikedQueue'
+```
+
+
 
 
 ## Contributing
