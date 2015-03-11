@@ -2,13 +2,6 @@ require "bunny"
 require "yaml"
 
 module FishtreeBunnyClient
-	class QueueListener
-
-		def self.test
-			p 'running test'
-		end
-
-	end
 
 	# class QueueListener
 	# 	attr_accessor :env, :channel, :queues, :queue_config
