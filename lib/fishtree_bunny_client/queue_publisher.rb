@@ -5,7 +5,7 @@ module FishtreeBunnyClient
   class QueuePublisher
 	  def self.publish(queue, message)
 	    if ['production', 'staging'].include? ENV["RACK_ENV"]
-	        conn = Bunny.new(ENV["RABBITMQ_URL_INT"])
+	        conn = Bunny.new(ENV["RABBIT_URL"])
 	      else
 	        conn = Bunny.new(host: Rabbit[:host], vhost: Rabbit[:vhost], user: Rabbit[:user],
 	                       password: Rabbit[:password], port: Rabbit[:port].to_s)
@@ -25,7 +25,7 @@ module FishtreeBunnyClient
 
 	  def self.direct(queue, message)
 	    if ['production', 'staging'].include? ENV["RACK_ENV"]
-	        conn = Bunny.new(ENV["RABBITMQ_URL_INT"])
+	        conn = Bunny.new(ENV["RABBIT_URL"])
 	      else
 	        conn = Bunny.new(host: Rabbit[:host], vhost: Rabbit[:vhost], user: Rabbit[:user],
 	                       password: Rabbit[:password], port: Rabbit[:port].to_s)
@@ -67,7 +67,7 @@ class QueueListener
 		def setup
 			begin
 				if ['production', 'staging'].include? ENV["RACK_ENV"]
-					conn = Bunny.new(ENV["RABBITMQ_URL_INT"])
+					conn = Bunny.new(ENV["RABBIT_URL"])
 				else
 					conn = Bunny.new(host: Rabbit[:host], vhost: Rabbit[:vhost], user: Rabbit[:user], password: Rabbit[:password], port: Rabbit[:port])
 				end
