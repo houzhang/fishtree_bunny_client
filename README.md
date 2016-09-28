@@ -7,7 +7,7 @@ It's a wrapper on bunny gem.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'fishtree_bunny_client', '0.0.2', git: 'git@github.com:fishtree/fishtree_bunny_client.git'
+gem 'fishtree_bunny_client', '0.0.2', git: 'git@github.com:houzhang/fishtree_bunny_client.git'
 ```
 
 And then execute:
